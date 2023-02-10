@@ -1,7 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
+  const API_KEY = process.env.REACT_APP_LOA_API_KEY;
+
   return (
     <div className="App">
       <header className="App-header">
