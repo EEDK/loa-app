@@ -1,27 +1,16 @@
-import logo from "./logo.svg";
+import React, { Component } from "react";
 import "./App.css";
+import Oreha from "./component/oreha.js";
+class App extends Component {
+  render() {
+    const API_KEY = process.env.REACT_APP_LOA_API_KEY;
 
-function App() {
-  const API_KEY = process.env.REACT_APP_LOA_API_KEY;
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+      <div>
+        <Oreha />
+      </div>
+    );
+  }
 }
 
 export default App;
