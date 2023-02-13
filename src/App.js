@@ -3,6 +3,9 @@ import axios from "axios";
 import "./App.css";
 import Oreha from "./component/oreha.js";
 
+// 테스트용 목업 데이터.
+import { MockDataOreHa, MockDataRelic } from "./mockData";
+
 function App() {
   const [orehaDatas, setOreha] = useState([]);
   const [orehaRelic, setRelic] = useState([]);
@@ -34,6 +37,8 @@ function App() {
       .then(function (response) {
         setOreha(response.data);
         setLoadingOreha(true);
+
+        console.log(orehaDatas);
       })
       .catch(function (error) {
         console.error(error);
@@ -64,6 +69,8 @@ function App() {
       .then(function (response) {
         setRelic(response.data);
         setLoadingRelic(true);
+
+        console.log(orehaRelic);
       })
       .catch(function (error) {
         console.error(error);
@@ -71,12 +78,17 @@ function App() {
   };
 
   useEffect(() => {
-    getDataOreha();
-    getDataRelics();
+    // getDataOreha();
+    // getDataRelics();
   }, []);
 
   return (
-    <div>{isLoadingRelic && isLoadingOreha ? <Oreha /> : "Loading..."}</div>
+    <div>
+      <div>{isLoadingRelic && isLoadingOreha ? <Oreha /> : "Loading..."}</div>
+      <div>
+        <Oreha orehaData={MockDataOreHa} relicData={MockDataRelic} />
+      </div>
+    </div>
   );
 }
 

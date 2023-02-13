@@ -6,7 +6,8 @@
 
 import React from "react";
 
-function oreha({ normal, common, ore, mid, great, greatest }) {
+function oreha({ orehaData, relicData }) {
+  console.log(orehaData, relicData);
   return (
     <div className="oreha__main">
       <h1>hello</h1>
