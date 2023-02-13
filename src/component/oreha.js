@@ -4,16 +4,14 @@
     최상급 오레하 : 15개 제작, 고대 유물 107, 희귀한 유물 51, 오레하 유물 52개 제작 비용 300 골드
 */
 
-import React, { Component } from "react";
+import React from "react";
 
-class oreha extends Component {
-  render() {
-    return (
-      <div className="oreha__main">
-        <h1>hello</h1>
-      </div>
-    );
-  }
+function oreha({ normal, common, ore, mid, great, greatest }) {
+  return (
+    <div className="oreha__main">
+      <h1>hello</h1>
+    </div>
+  );
 }
 
 export default oreha;
