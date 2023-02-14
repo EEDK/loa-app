@@ -1,3 +1,3 @@
-import OrehaValue from "./orehaValue/OrehaValue";
+import Value from "./Value/Value";
 
-export { OrehaValue };
+export { Value };

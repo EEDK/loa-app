@@ -1,4 +1,5 @@
 /*  오레하 계산기 정보
+    오레하 가격을 출력하는 컨테이너
     중급 오레하 :30개 제작, 고대 유물 64, 희귀한 유물 26, 오레하 유물 8개 제작 비용 205 골드
     상급 오레하 : 20개 제작, 고대 유물 94, 희귀한 유물 29, 오레하 유물 16개 제작 비용 250 골드
     최상급 오레하 : 15개 제작, 고대 유물 107, 희귀한 유물 51, 오레하 유물 52개 제작 비용 300 골드
@@ -6,7 +7,7 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {OrehaValue} from '../../component'
+import {Value} from '../../component'
 
 // 테스트용 목업 데이터.
 import { MockDataOreHa, MockDataRelic } from "./mockData";
@@ -95,11 +96,20 @@ function Oreha() {
 
       <div>
         {MockDataOreHa.Items.map(item => (
-            <OrehaValue 
+            <Value 
             key={item.Id}
             name={item.Name}
             value={item.CurrentMinPrice} />
         ))}
+      </div>
+          {MockDataRelic.Items.map(item => (
+            <Value 
+            key={item.Id}
+            name={item.Name}
+            value={item.CurrentMinPrice} />
+          ))}
+      <div>
+
       </div>
     </div>
   );
