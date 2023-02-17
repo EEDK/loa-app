@@ -1,3 +1,3 @@
-import orehaCalc from "./orehaCalc";
+import OrehaCalc from "./orehaCalc/OrehaCalc";
 
-export { orehaCalc };
+export { OrehaCalc };

@@ -12,20 +12,8 @@
 
 */
 
-function OrehaCalc(normal, common, oreha, selecter, discountRate) {
-  switch (selecter) {
-    case 0:
-      //중급 계산
-      break;
-    case 1:
-      // 상급계산
-      break;
-    case 2:
-      // 최상급 계산
-      break;
-    default:
-      alert("문제가 발생했습니다. 적합하지 못한 입력값입니다.");
-  }
+function OrehaCalc(nowValue, RelicData, discountRate) {
+  return 1;
 }
 
 export default OrehaCalc;

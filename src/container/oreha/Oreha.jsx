@@ -7,7 +7,7 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import {Value} from '../../component'
+import {Value, Befefit} from '../../component'
 
 // 테스트용 목업 데이터.
 import { MockDataOreHa, MockDataRelic } from "./mockData";
@@ -15,6 +15,7 @@ import { MockDataOreHa, MockDataRelic } from "./mockData";
 function Oreha() {
   const [orehaDatas, setOreha] = useState([]);
   const [orehaRelic, setRelic] = useState([]);
+  const [discountRate, setRate] = useState(10.0);
 
   const [isLoadingOreha, setLoadingOreha] = useState(false);
   const [isLoadingRelic, setLoadingRelic] = useState(false);
@@ -83,6 +84,11 @@ function Oreha() {
       });
   };
 
+  const inputValueChange = () =>{
+    var inputValue = document.getElementById('discountValue').value;
+    setRate(inputValue)
+}
+
   useEffect(() => {
     // getDataOreha();
     // getDataRelics();
@@ -95,6 +101,10 @@ function Oreha() {
       </div>
 
       <div>
+        <div>
+          <input type="text" name="discountValue" id="discountValue" />
+          <button onClick={inputValueChange}> 할인 값 제출 </button>
+        </div>
         {MockDataOreHa.Items.map(item => (
             <Value 
             key={item.Id}
@@ -109,7 +119,15 @@ function Oreha() {
             value={item.CurrentMinPrice} />
           ))}
       <div>
-
+        여기부터 얼마 이득인지 알려줌
+        {MockDataOreHa.Items.map(item => (
+            <Befefit 
+            key={item.Id}
+            name={item.Name}
+            value={item.CurrentMinPrice} 
+            discountRate={discountRate}
+            relicData = {MockDataRelic}/>
+        ))}
       </div>
     </div>
   );
