@@ -1,10 +1,10 @@
-import React from "react";
-import "./Value.css";
-import PropTypes from "prop-types";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import Divider from "@mui/material/Divider";
+import React from 'react';
+import './Value.css';
+import PropTypes from 'prop-types';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import Divider from '@mui/material/Divider';
 
 // 값을 도출하는 각각의 컴포넌트
 function Value({ name, value }) {
@@ -12,18 +12,15 @@ function Value({ name, value }) {
     <div>
       <List
         sx={{
-          width: "100%",
+          width: '100%',
           maxWidth: 500,
-          bgcolor: "background.paper",
+          bgcolor: 'background.paper',
         }}
       >
         <ListItem>
-          <ListItemText
-            primary={`${name}의 현재 값은 ${value} 골드 입니다.`}
-            secondary="Jan 9, 2014"
-          />
+          <ListItemText primary={`${name}의 현재 값은 ${value} 골드 입니다.`} />
         </ListItem>
-        <Divider variant="inset" component="li" />
+        <Divider component="li" />
       </List>
     </div>
   );

@@ -5,12 +5,12 @@
     최상급 오레하 : 15개 제작, 고대 유물 107, 희귀한 유물 51, 오레하 유물 52개 제작 비용 300 골드
 */
 
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import {Value, Befefit} from '../../component'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Value, Befefit } from '../../component';
 
 // 테스트용 목업 데이터.
-import { MockDataOreHa, MockDataRelic } from "./mockData";
+import { MockDataOreHa, MockDataRelic } from './mockData';
 
 function Oreha() {
   const [orehaDatas, setOreha] = useState([]);
@@ -21,21 +21,21 @@ function Oreha() {
   const [isLoadingRelic, setLoadingRelic] = useState(false);
 
   const getDataOreha = async () => {
-    const url = "https://developer-lostark.game.onstove.com";
+    const url = 'https://developer-lostark.game.onstove.com';
     const API_KEY = process.env.REACT_APP_LOA_API_KEY;
 
     // 오레하 정보를 입력 받을 내용
     const optionsOreha = {
-      method: "POST",
+      method: 'POST',
       url: `${url}/markets/items`,
       headers: {
-        accept: "application/json",
+        accept: 'application/json',
         authorization: `bearer ${API_KEY}`,
-        "content-Type": "application/json",
+        'content-Type': 'application/json',
       },
       data: JSON.stringify({
         CategoryCode: 50000,
-        ItemName: "오레하",
+        ItemName: '오레하',
       }),
     };
 
@@ -53,21 +53,21 @@ function Oreha() {
   };
 
   const getDataRelics = async () => {
-    const url = "https://developer-lostark.game.onstove.com";
+    const url = 'https://developer-lostark.game.onstove.com';
     const API_KEY = process.env.REACT_APP_LOA_API_KEY;
 
     // 유물 정보를 입력 받을 내용
     const optionsRelics = {
-      method: "POST",
+      method: 'POST',
       url: `${url}/markets/items`,
       headers: {
-        accept: "application/json",
+        accept: 'application/json',
         authorization: `bearer ${API_KEY}`,
-        "content-Type": "application/json",
+        'content-Type': 'application/json',
       },
       data: JSON.stringify({
         CategoryCode: 90000,
-        ItemName: "유물",
+        ItemName: '유물',
       }),
     };
 
@@ -84,10 +84,10 @@ function Oreha() {
       });
   };
 
-  const inputValueChange = () =>{
+  const inputValueChange = () => {
     var inputValue = document.getElementById('discountValue').value;
-    setRate(inputValue)
-}
+    setRate(inputValue);
+  };
 
   useEffect(() => {
     // getDataOreha();
@@ -97,7 +97,7 @@ function Oreha() {
   return (
     <div>
       <div>
-        {isLoadingRelic && isLoadingOreha ? <h1>여기 나타남</h1> : "Loading..."}
+        {isLoadingRelic && isLoadingOreha ? <h1>여기 나타남</h1> : 'Loading...'}
       </div>
 
       <div>
@@ -105,28 +105,22 @@ function Oreha() {
           <input type="text" name="discountValue" id="discountValue" />
           <button onClick={inputValueChange}> 할인 값 제출 </button>
         </div>
-        {MockDataOreHa.Items.map(item => (
-            <Value 
-            key={item.Id}
-            name={item.Name}
-            value={item.CurrentMinPrice} />
+        {MockDataOreHa.Items.map((item) => (
+          <Value key={item.Id} name={item.Name} value={item.CurrentMinPrice} />
         ))}
       </div>
-          {MockDataRelic.Items.map(item => (
-            <Value 
-            key={item.Id}
-            name={item.Name}
-            value={item.CurrentMinPrice} />
-          ))}
+      {MockDataRelic.Items.map((item) => (
+        <Value key={item.Id} name={item.Name} value={item.CurrentMinPrice} />
+      ))}
       <div>
-        여기부터 얼마 이득인지 알려줌
-        {MockDataOreHa.Items.map(item => (
-            <Befefit 
+        {MockDataOreHa.Items.map((item) => (
+          <Befefit
             key={item.Id}
             name={item.Name}
-            value={item.CurrentMinPrice} 
+            value={item.CurrentMinPrice}
             discountRate={discountRate}
-            relicData = {MockDataRelic}/>
+            relicData={MockDataRelic}
+          />
         ))}
       </div>
     </div>
