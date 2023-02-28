@@ -1,5 +1,5 @@
 import React from 'react';
-import './Value.css';
+import './Value.scss';
 import PropTypes from 'prop-types';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';

@@ -10,8 +10,7 @@
 
 # 사용 라이브러리
 
-## UI : Material-UI
-
-## Testing : JEST
-
-## 상태 관리 라이브러리 : MobX
+UI : Material-UI
+Testing : JEST
+상태 관리 라이브러리 : MobX
+CSS 전처리기 : SCSS
