@@ -12,8 +12,44 @@
 
 */
 
-function OrehaCalc(nowValue, RelicData, discountRate) {
-  return 1;
+function OrehaCalc(name, nowValue, RelicData, discountRate) {
+  var result = -1;
+
+  var normal = 0,
+    common = 0,
+    oreha = 0;
+
+  RelicData.Items.forEach((element) => {
+    if (element.Name === '고대 유물') {
+      normal = element.RecentPrice;
+    } else if (element.Name === '희귀한 유물') {
+      common = element.RecentPrice;
+    } else if (element.Name === '오레하 유물') {
+      oreha = element.RecentPrice;
+    }
+  });
+
+  console.log(name, nowValue, RelicData, discountRate);
+
+  switch (name) {
+    case '하급 오레하 융화 재료':
+      result = 1;
+      break;
+    case '중급 오레하 융화 재료':
+      result = 2;
+      break;
+    case '상급 오레하 융화 재료':
+      result = 3;
+      break;
+    case '최상급 오레하 융화 재료':
+      result = 4;
+      break;
+
+    default:
+      result = 0;
+  }
+
+  return result;
 }
 
 export default OrehaCalc;
