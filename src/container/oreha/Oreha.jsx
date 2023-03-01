@@ -7,7 +7,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Value, Befefit } from '../../component';
+import { Value, Befefit, Header } from '../../component';
 
 // 테스트용 목업 데이터.
 import { MockDataOreHa, MockDataRelic } from './mockData';
@@ -97,9 +97,13 @@ function Oreha() {
   return (
     <div>
       <div>
-        {isLoadingRelic && isLoadingOreha ? <h1>여기 나타남</h1> : 'Loading...'}
+        {isLoadingRelic && isLoadingOreha ? (
+          <div>여기 나타남</div>
+        ) : (
+          'Loading...'
+        )}
       </div>
-
+      <Header></Header>
       <div>
         <div>
           <input type="text" name="discountValue" id="discountValue" />
