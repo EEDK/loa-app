@@ -8,11 +8,25 @@ import IconButton from '@mui/material/IconButton';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
+import indexStore from '../../modules/IndexStore';
 
 export default function Header() {
   const [open, setOpen] = React.useState(false);
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const { keyStore } = indexStore();
+
+  const setAPIKEY = (event) => {
+    const textBox = document.getElementById('APIKEY');
+
+    if (textBox != null) {
+      keyStore.setAPIKEY(textBox.value);
+    } else {
+      alert('적합한 값을 입력하세요');
+    }
+    handleClose();
+  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -49,7 +63,7 @@ export default function Header() {
                 label="APIKEY"
                 variant="outlined"
               />
-              <Button variant="outlined" onClick={handleClose}>
+              <Button onClick={setAPIKEY} variant="outlined">
                 변경
               </Button>
             </Box>

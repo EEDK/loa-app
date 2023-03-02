@@ -7,8 +7,6 @@ const keyStore = observable({
   // action
   setAPIKEY(string) {
     this.apiKey = string;
-
-    console.log(this.apiKey);
   },
 });
 
