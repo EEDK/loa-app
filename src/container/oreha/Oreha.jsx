@@ -122,7 +122,7 @@ function Oreha() {
       <Header></Header>
       <Box
         sx={{
-          marginTop: 8,
+          marginTop: 3,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -152,22 +152,21 @@ function Oreha() {
               />
             ))}
           </div>
-        </div>
-
-        <div className="Oreha__main__benefitValue">
-          <Typography gutterBottom variant="h4" component="div">
-            이득 가격
-          </Typography>
-          <div>
-            {MockDataOreHa.Items.map((item) => (
-              <Befefit
-                key={item.Id}
-                name={item.Name}
-                value={item.CurrentMinPrice}
-                discountRate={discountRate}
-                relicData={MockDataRelic}
-              />
-            ))}
+          <div className="Oreha__main__benefitValue">
+            <Typography gutterBottom variant="h4" component="div">
+              이득 가격
+            </Typography>
+            <div>
+              {MockDataOreHa.Items.map((item) => (
+                <Befefit
+                  key={item.Id}
+                  name={item.Name}
+                  value={item.CurrentMinPrice}
+                  discountRate={discountRate}
+                  relicData={MockDataRelic}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </Box>
