@@ -1,12 +1,8 @@
-.Oreha{
-    display: 'flex',
-}
-
-
-.Oreha__main__ingredientValue{
-    padding-top: 30px;
-}
-
-.Oreha__main__benefitValue{
-    padding-top: 30px;
+.Oreha__main{
+    &__ingredientValue{
+        padding-top: 30px;
+    }
+    &__benefitValue{
+        padding-top: 30px;
+    }
 }

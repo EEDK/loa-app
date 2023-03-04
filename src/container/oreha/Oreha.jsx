@@ -62,8 +62,8 @@ function Oreha() {
         setLoadingOreha(true);
       })
       .catch(function (error) {
-        alert('유효한 APIKEY를 입력해 주세요');
         navigate('/');
+        alert('유효한 APIKEY를 입력해 주세요');
       });
   };
 
@@ -94,7 +94,6 @@ function Oreha() {
         setLoadingRelic(true);
       })
       .catch(function (error) {
-        alert('유효한 APIKEY를 입력해 주세요');
         navigate('/');
       });
   };
