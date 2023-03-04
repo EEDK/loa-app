@@ -1,4 +1,5 @@
-/*  오레하 계산기 정보
+/*  
+    오레하 계산기 정보
     오레하 가격을 출력하는 컨테이너
     중급 오레하 :30개 제작, 고대 유물 64, 희귀한 유물 26, 오레하 유물 8개 제작 비용 205 골드
     상급 오레하 : 20개 제작, 고대 유물 94, 희귀한 유물 29, 오레하 유물 16개 제작 비용 250 골드
@@ -6,11 +7,13 @@
 */
 
 import React, { useState, useEffect } from 'react';
+import './Oreha.scss';
 import axios from 'axios';
 import { Value, Befefit, Header } from '../../component';
 import indexStore from '../../modules/IndexStore';
 import { useNavigate } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 // 테스트용 목업 데이터.
 import { MockDataOreHa, MockDataRelic } from './mockData';
 
@@ -117,35 +120,57 @@ function Oreha() {
         )}
       </div>
       <Header></Header>
-      <div className="Oreha__main">
-        <div className="Oreha__main__discountBtn">
-          <input type="text" name="discountValue" id="discountValue" />
-          <button onClick={inputValueChange}> 제작 할인값 설정 </button>
+      <Box
+        sx={{
+          marginTop: 8,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
+        <div className="Oreha__main">
+          <div className="Oreha__main__discountBtn">
+            <input type="text" name="discountValue" id="discountValue" />
+            <button onClick={inputValueChange}> 제작 할인값 설정 </button>
+          </div>
+          <div className="Oreha__main__ingredientValue">
+            <Typography gutterBottom variant="h4" component="div">
+              재료 가격
+            </Typography>
+            {MockDataOreHa.Items.map((item) => (
+              <Value
+                key={item.Id}
+                name={item.Name}
+                value={item.CurrentMinPrice}
+              />
+            ))}
+            {MockDataRelic.Items.map((item) => (
+              <Value
+                key={item.Id}
+                name={item.Name}
+                value={item.CurrentMinPrice}
+              />
+            ))}
+          </div>
         </div>
-        <Typography gutterBottom variant="h4" component="div">
-          재료 가격
-        </Typography>
-        {MockDataOreHa.Items.map((item) => (
-          <Value key={item.Id} name={item.Name} value={item.CurrentMinPrice} />
-        ))}
-      </div>
-      {MockDataRelic.Items.map((item) => (
-        <Value key={item.Id} name={item.Name} value={item.CurrentMinPrice} />
-      ))}
-      <Typography gutterBottom variant="h4" component="div">
-        이득 가격
-      </Typography>
-      <div>
-        {MockDataOreHa.Items.map((item) => (
-          <Befefit
-            key={item.Id}
-            name={item.Name}
-            value={item.CurrentMinPrice}
-            discountRate={discountRate}
-            relicData={MockDataRelic}
-          />
-        ))}
-      </div>
+
+        <div className="Oreha__main__benefitValue">
+          <Typography gutterBottom variant="h4" component="div">
+            이득 가격
+          </Typography>
+          <div>
+            {MockDataOreHa.Items.map((item) => (
+              <Befefit
+                key={item.Id}
+                name={item.Name}
+                value={item.CurrentMinPrice}
+                discountRate={discountRate}
+                relicData={MockDataRelic}
+              />
+            ))}
+          </div>
+        </div>
+      </Box>
     </div>
   );
 }
