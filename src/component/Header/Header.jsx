@@ -9,19 +9,23 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Modal from '@mui/material/Modal';
 import TextField from '@mui/material/TextField';
 import indexStore from '../../modules/IndexStore';
+import { useNavigate } from 'react-router-dom';
 
 export default function Header() {
   const [open, setOpen] = React.useState(false);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const { keyStore } = indexStore();
+  const { keyStore, valueStore } = indexStore();
+  const navigate = useNavigate();
 
   const setAPIKEY = (event) => {
-    const textBox = document.getElementById('APIKEY');
+    const APITEXT = document.getElementById('APIKEY');
+    const DisCountTEXT = document.getElementById('discountValue');
 
-    if (textBox != null) {
-      keyStore.setAPIKEY(textBox.value);
+    if (APITEXT != null && DisCountTEXT != null) {
+      keyStore.setAPIKEY(APITEXT.value);
+      valueStore.setDiscount(DisCountTEXT.value);
     } else {
       alert('적합한 값을 입력하세요');
     }
@@ -38,11 +42,14 @@ export default function Header() {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
+            onClick={() => {
+              navigate(-1);
+            }}
           >
             <ArrowBackIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            계산기 내용
+            로아 계산기
           </Typography>
           <Button onClick={handleOpen} color="inherit">
             API-KEY 수정
@@ -55,13 +62,22 @@ export default function Header() {
           >
             <Box sx={modalStyle}>
               <Typography id="modal-modal-title" variant="h6" component="h2">
-                API-KEY 수정
+                API-KEY 수정 및 영지 설정 변경
               </Typography>
               <TextField
                 fullWidth
                 id="APIKEY"
                 label="APIKEY"
                 variant="outlined"
+                defaultValue={keyStore.apiKey}
+              />
+              <TextField
+                margin="normal"
+                fullWidth
+                label="영지 할인 퍼센트"
+                id="discountValue"
+                name="discountValue"
+                defaultValue={valueStore.discountValue}
               />
               <Button onClick={setAPIKEY} variant="outlined">
                 변경

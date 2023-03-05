@@ -14,6 +14,7 @@ import indexStore from '../../modules/IndexStore';
 import { useNavigate } from 'react-router-dom';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+
 // 테스트용 목업 데이터.
 import { MockDataOreHa, MockDataRelic } from './mockData';
 
@@ -25,7 +26,7 @@ function Oreha() {
   const [isLoadingOreha, setLoadingOreha] = useState(false);
   const [isLoadingRelic, setLoadingRelic] = useState(false);
 
-  const { keyStore } = indexStore();
+  const { keyStore, valueStore } = indexStore();
   const navigate = useNavigate();
 
   // APIKEY가 없을경우 home화면으로 이동
@@ -127,10 +128,6 @@ function Oreha() {
         }}
       >
         <div className="Oreha__main">
-          <div className="Oreha__main__discountBtn">
-            <input type="text" name="discountValue" id="discountValue" />
-            <button onClick={inputValueChange}> 제작 할인값 설정 </button>
-          </div>
           <div className="Oreha__main__ingredientValue">
             <Typography gutterBottom variant="h4" component="div">
               재료 가격
@@ -160,7 +157,7 @@ function Oreha() {
                   key={item.Id}
                   name={item.Name}
                   value={item.CurrentMinPrice}
-                  discountRate={discountRate}
+                  discountRate={valueStore.discountValue}
                   relicData={MockDataRelic}
                 />
               ))}
