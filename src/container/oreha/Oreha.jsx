@@ -100,8 +100,10 @@ function Oreha() {
 
   useEffect(() => {
     isSetAPIKEY();
-    getDataOreha();
-    getDataRelics();
+    setLoadingOreha(true);
+    setLoadingRelic(true);
+    // getDataOreha();
+    // getDataRelics();
   }, []);
 
   return (
@@ -123,14 +125,14 @@ function Oreha() {
                   <Typography gutterBottom variant="h4" component="div">
                     재료 가격
                   </Typography>
-                  {orehaDatas.Items.map((item) => (
+                  {MockDataOreHa.Items.map((item) => (
                     <Value
                       key={item.Id}
                       name={item.Name}
                       value={item.CurrentMinPrice}
                     />
                   ))}
-                  {orehaRelic.Items.map((item) => (
+                  {MockDataRelic.Items.map((item) => (
                     <Value
                       key={item.Id}
                       name={item.Name}
@@ -143,13 +145,13 @@ function Oreha() {
                     이득 가격
                   </Typography>
                   <div>
-                    {orehaDatas.Items.map((item) => (
+                    {MockDataOreHa.Items.map((item) => (
                       <Befefit
                         key={item.Id}
                         name={item.Name}
                         value={item.CurrentMinPrice}
                         discountRate={valueStore.discountValue}
-                        relicData={orehaRelic}
+                        relicData={MockDataRelic}
                       />
                     ))}
                   </div>
