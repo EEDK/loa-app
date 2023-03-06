@@ -21,7 +21,6 @@ import { MockDataOreHa, MockDataRelic } from './mockData';
 function Oreha() {
   const [orehaDatas, setOreha] = useState([]);
   const [orehaRelic, setRelic] = useState([]);
-  const [discountRate, setRate] = useState(10.0);
 
   const [isLoadingOreha, setLoadingOreha] = useState(false);
   const [isLoadingRelic, setLoadingRelic] = useState(false);
@@ -99,72 +98,69 @@ function Oreha() {
       });
   };
 
-  const inputValueChange = () => {
-    var inputValue = document.getElementById('discountValue').value;
-    setRate(inputValue);
-  };
-
   useEffect(() => {
     isSetAPIKEY();
-    // getDataOreha();
-    // getDataRelics();
+    getDataOreha();
+    getDataRelics();
   }, []);
 
   return (
     <div className="Oreha">
       <div>
         {isLoadingRelic && isLoadingOreha ? (
-          <div>여기 나타남</div>
+          <div>
+            {' '}
+            <Header></Header>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+              <div className="Oreha__main">
+                <div className="Oreha__main__ingredientValue">
+                  <Typography gutterBottom variant="h4" component="div">
+                    재료 가격
+                  </Typography>
+                  {orehaDatas.Items.map((item) => (
+                    <Value
+                      key={item.Id}
+                      name={item.Name}
+                      value={item.CurrentMinPrice}
+                    />
+                  ))}
+                  {orehaRelic.Items.map((item) => (
+                    <Value
+                      key={item.Id}
+                      name={item.Name}
+                      value={item.CurrentMinPrice}
+                    />
+                  ))}
+                </div>
+                <div className="Oreha__main__benefitValue">
+                  <Typography gutterBottom variant="h4" component="div">
+                    이득 가격
+                  </Typography>
+                  <div>
+                    {orehaDatas.Items.map((item) => (
+                      <Befefit
+                        key={item.Id}
+                        name={item.Name}
+                        value={item.CurrentMinPrice}
+                        discountRate={valueStore.discountValue}
+                        relicData={orehaRelic}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </Box>
+          </div>
         ) : (
           'Loading...'
         )}
       </div>
-      <Header></Header>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        }}
-      >
-        <div className="Oreha__main">
-          <div className="Oreha__main__ingredientValue">
-            <Typography gutterBottom variant="h4" component="div">
-              재료 가격
-            </Typography>
-            {MockDataOreHa.Items.map((item) => (
-              <Value
-                key={item.Id}
-                name={item.Name}
-                value={item.CurrentMinPrice}
-              />
-            ))}
-            {MockDataRelic.Items.map((item) => (
-              <Value
-                key={item.Id}
-                name={item.Name}
-                value={item.CurrentMinPrice}
-              />
-            ))}
-          </div>
-          <div className="Oreha__main__benefitValue">
-            <Typography gutterBottom variant="h4" component="div">
-              이득 가격
-            </Typography>
-            <div>
-              {MockDataOreHa.Items.map((item) => (
-                <Befefit
-                  key={item.Id}
-                  name={item.Name}
-                  value={item.CurrentMinPrice}
-                  discountRate={valueStore.discountValue}
-                  relicData={MockDataRelic}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </Box>
     </div>
   );
 }
