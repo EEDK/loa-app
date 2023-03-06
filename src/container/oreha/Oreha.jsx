@@ -107,62 +107,62 @@ function Oreha() {
   }, []);
 
   return (
-    <div className="Oreha">
-      <div>
-        {isLoadingRelic && isLoadingOreha ? (
-          <div>
-            {' '}
-            <Header></Header>
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
-            >
-              <div className="Oreha__main">
-                <div className="Oreha__main__ingredientValue">
-                  <Typography gutterBottom variant="h4" component="div">
-                    재료 가격
-                  </Typography>
+    <div>
+      {isLoadingRelic && isLoadingOreha ? (
+        <div className="Oreha">
+          {' '}
+          <Header></Header>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <div className="Oreha__main">
+              <div className="Oreha__main__ingredientValue">
+                <Typography gutterBottom variant="h4" component="div">
+                  재료 가격
+                </Typography>
+                {MockDataOreHa.Items.map((item) => (
+                  <Value
+                    key={item.Id}
+                    name={item.Name}
+                    value={item.CurrentMinPrice}
+                  />
+                ))}
+                {MockDataRelic.Items.map((item) => (
+                  <Value
+                    key={item.Id}
+                    name={item.Name}
+                    value={item.CurrentMinPrice}
+                  />
+                ))}
+              </div>
+              <div className="Oreha__main__benefitValue">
+                <Typography gutterBottom variant="h4" component="div">
+                  이득 가격
+                </Typography>
+                <div>
                   {MockDataOreHa.Items.map((item) => (
-                    <Value
+                    <Befefit
                       key={item.Id}
                       name={item.Name}
                       value={item.CurrentMinPrice}
+                      discountRate={valueStore.discountValue}
+                      relicData={MockDataRelic}
                     />
                   ))}
-                  {MockDataRelic.Items.map((item) => (
-                    <Value
-                      key={item.Id}
-                      name={item.Name}
-                      value={item.CurrentMinPrice}
-                    />
-                  ))}
-                </div>
-                <div className="Oreha__main__benefitValue">
-                  <Typography gutterBottom variant="h4" component="div">
-                    이득 가격
-                  </Typography>
-                  <div>
-                    {MockDataOreHa.Items.map((item) => (
-                      <Befefit
-                        key={item.Id}
-                        name={item.Name}
-                        value={item.CurrentMinPrice}
-                        discountRate={valueStore.discountValue}
-                        relicData={MockDataRelic}
-                      />
-                    ))}
-                  </div>
                 </div>
               </div>
-            </Box>
-          </div>
-        ) : (
-          'Loading...'
-        )}
-      </div>
+            </div>
+          </Box>
+        </div>
+      ) : (
+        <div className="Loading">
+          <h1>'Loading...'</h1>
+        </div>
+      )}
     </div>
   );
 }
