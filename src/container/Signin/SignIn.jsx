@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 const theme = createTheme();
 
 function SignIn() {
-  const { keyStore } = indexStore();
+  const { keyStore, valueStore } = indexStore();
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
@@ -20,6 +20,9 @@ function SignIn() {
     const data = new FormData(event.currentTarget);
 
     keyStore.setAPIKEY(data.get('APIKEY'));
+    valueStore.setDiscount(data.get('discountValue'));
+
+    // console.log(keyStore.apiKey, valueStore.discountValue);
     navigate('/product');
   };
 
@@ -36,7 +39,7 @@ function SignIn() {
           }}
         >
           <Typography component="h1" variant="h5">
-            쌀먹 계산기
+            로아 계산기
           </Typography>
           <Box
             component="form"
@@ -48,12 +51,18 @@ function SignIn() {
               margin="normal"
               required
               fullWidth
-              name="APIKEY"
               label="APIKEY"
-              type="APIKEY"
               id="APIKEY"
-              autoComplete="current-password"
+              name="APIKEY"
             />
+            <TextField
+              margin="normal"
+              fullWidth
+              label="영지 할인 퍼센트"
+              id="discountValue"
+              name="discountValue"
+            />
+
             {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"

@@ -1,0 +1,16 @@
+.Oreha{
+    background-color: whitesmoke;
+    width: 100%;
+    height: 100%;
+}
+
+.Oreha__main{
+    background-color: white;
+    height: 100vh;
+    &__ingredientValue{
+        padding-top: 30px;
+    }
+    &__benefitValue{
+        padding-top: 30px;
+    }
+}
